@@ -1,0 +1,30 @@
+{
+    "name": "royale-alchemist-web",
+    "version": "0.1.0",
+    "description": "Royale Alchemist web client",
+    "main": "index.js",
+    "scripts": {
+        "start": "npm start -w client & npm start -w server",
+        "start:client": "npm start -w client",
+        "start:server": "npm start -w server",
+        "dev": "npm run dev -w client & npm run dev -w server",
+        "dev:client": "npm run dev -w client",
+        "dev:server": "npm run dev -w server",
+        "build": "npm run build -w client",
+        "predeploy": "npm run predeploy -w client",
+        "deploy": "npm run deploy -w client"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/spicecat/royale-alchemist-web.git"
+    },
+    "author": "spicecat",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/spicecat/royale-alchemist-web/issues"
+    },
+    "workspaces": [
+        "client",
+        "server"
+    ]
+}
