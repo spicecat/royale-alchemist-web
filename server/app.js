@@ -9,7 +9,7 @@ app.use(cors());
 app.disable('x-powered-by');
 app.use(express.json());
 
-app.get('/ping', (_, res) => res.sendStatus(200));
+app.get('/ping', (_, res) => res.send('pong'));
 app.get('/env', (_, res) => res.send(process.env.LOADED));
 app.get('/deck', deckController);
 

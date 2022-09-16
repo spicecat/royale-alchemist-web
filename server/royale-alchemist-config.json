@@ -1,0 +1,19 @@
+{
+    "COMMANDS": {
+        "deck": [
+            "trophies",
+            "name",
+            "name-length",
+            "clan",
+            "clan-length",
+            "flag",
+            "tag",
+            "rank",
+            "tourney",
+            "user",
+            "player-number",
+            "link",
+            "battle-type"
+        ]
+    }
+}
