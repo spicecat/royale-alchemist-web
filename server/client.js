@@ -5,10 +5,12 @@ const { TOKEN, TARGET, CHANNEL } = process.env;
 
 const client = new Client({ checkUpdate: false });
 
-let channel;
+let channel, commands;
 
-const sendSlash = (commandName, args) =>
-    channel.sendSlash(TARGET, commandName, args);
+const sendSlash = async (commandName, args) => {
+    const a = await channel.sendSlash(TARGET, commandName, args);
+    console.log(a, typeof a)
+}
 
 const getReply = () => Promise.race([
     new Promise(resolve => client.once('messageCreate', resolve)),
@@ -23,7 +25,12 @@ client.once('ready', async () => {
         return channelId;
     }
     channel = await client.channels.fetch(CHANNEL || getChannelId(TARGET));
+    commands = await channel.recipient.application.commands.fetch();
+    commands = commands.map(({ name, description, options }) => ({ name, description, options }));
+    console.log(commands[0].options);
 });
+
+// client.on('apiResponse', a => console.log(a))
 
 const retry = async (cmd, count = RETRY_LIMIT) => {
     const ret = await cmd();
