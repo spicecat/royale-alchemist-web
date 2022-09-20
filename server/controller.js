@@ -7,7 +7,7 @@ const sendSlashQuery = (command, query) => {
 };
 
 const getDecks = async query => {
-    await sendSlashQuery('deck', query);
+    //     await sendSlashQuery('deck', query);
 
     // const formatCommand = ({ trophies = '', name = '', clan = '', type = '' }) => `!deck ${trophies} ${name} clan: ${clan} ${type}:`,
     //     formatReply = ({ content }) =>

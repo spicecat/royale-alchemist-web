@@ -33,7 +33,8 @@ client.once('ready', async () => {
     commands = commands.map(({ options, ...command }) => ({ options: pickArr(options, ['type', 'name', 'description', 'required', 'minValue', 'maxValue']), ...command }))
 });
 
-client.on('messageCreate', a => console.log(a))
+client.on('messageCreate', a => console.log(a, 123))
+client.on('messageUpdate', a => console.log(a, 321))
 
 const retry = async (cmd, count = RETRY_LIMIT) => {
     const ret = await cmd();

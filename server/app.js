@@ -1,7 +1,7 @@
 const express = require('express'),
     cors = require('cors');
 if (!process.env.LOADED) require('dotenv-json')();
-const { deckController } = require('./controller');
+const {  } = require('./controller');
 
 const app = express();
 
