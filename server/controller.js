@@ -1,5 +1,4 @@
-const { COMMANDS } = require('./royale-alchemist-config');
-const { getReply, sendSlash } = require('./client');
+const { commands, getReply, sendSlash } = require('./client');
 
 const sendSlashQuery = (command, query) => {
     const formatArgs = (command, query) =>

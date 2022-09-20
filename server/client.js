@@ -5,6 +5,9 @@ const { TOKEN, TARGET, CHANNEL } = process.env;
 
 const client = new Client({ checkUpdate: false });
 
+const pickArr = (obj, paths) => obj.map(e => pick(e, paths));
+const pick = (obj, paths) => paths.reduce((res, key) => ({ ...res, [key]: obj[key] }), {});
+
 let channel, commands;
 
 const sendSlash = async (commandName, args) => {
@@ -25,12 +28,12 @@ client.once('ready', async () => {
         return channelId;
     }
     channel = await client.channels.fetch(CHANNEL || getChannelId(TARGET));
-    commands = await channel.recipient.application.commands.fetch();
-    commands = commands.map(({ name, description, options }) => ({ name, description, options }));
-    console.log(commands[0].options);
+    commands = await channel.recipient.application.commands.fetch()
+    commands = pickArr(commands, ['name', 'description', 'options']);
+    commands = commands.map(({ options, ...command }) => ({ options: pickArr(options, ['type', 'name', 'description', 'required', 'minValue', 'maxValue']), ...command }))
 });
 
-// client.on('apiResponse', a => console.log(a))
+client.on('messageCreate', a => console.log(a))
 
 const retry = async (cmd, count = RETRY_LIMIT) => {
     const ret = await cmd();
@@ -39,4 +42,4 @@ const retry = async (cmd, count = RETRY_LIMIT) => {
 
 client.login(TOKEN);
 
-module.exports = { getReply, sendSlash };
+module.exports = { commands, getReply, sendSlash };
